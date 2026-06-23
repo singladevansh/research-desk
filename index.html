@@ -192,7 +192,6 @@
             <p class="subtitle">Created by DS and assisted by AI</p>
         </header>
 
-        <!-- Archive / Entry Screen -->
         <section id="archive-view">
             <h2>Archived Reports</h2>
             <div class="grid-cards">
@@ -210,7 +209,6 @@
             </div>
         </section>
 
-        <!-- Generation Configuration Input Form -->
         <section id="config-view" class="hidden">
             <div class="report-section">
                 <h2>Configure Report Parameters</h2>
@@ -224,10 +222,8 @@
             </div>
         </section>
 
-        <!-- Active Live Workspace Output Architecture -->
         <section id="workspace-view" class="hidden">
             
-            <!-- Masthead Layout Wrapper -->
             <div class="report-section" id="masthead-container">
                 <div class="section-tag">Corporate Masthead / Cover</div>
                 <h2 id="live-report-title" style="font-size: 2.5rem; margin-bottom: 5px;">---</h2>
@@ -235,15 +231,12 @@
                 <div id="masthead-content" class="placeholder-box">Awaiting metric processing initialization...</div>
             </div>
 
-            <!-- Hook Banner Placeholder -->
             <div id="hook-container" class="hook-banner hidden">
                 <h3>Critical Non-Obvious Disruption Vectors</h3>
                 <div id="hook-content">Awaiting execution...</div>
             </div>
 
-            <!-- Report Body Skeletons (Sections 1-10) -->
             <div id="report-output">
-                <!-- Section 01 -->
                 <div id="sec-1" class="report-section">
                     <div class="section-tag">Section 01 · Quantitative</div>
                     <h3>Market Size & Growth Trajectory</h3>
@@ -251,7 +244,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 02 -->
                 <div id="sec-2" class="report-section">
                     <div class="section-tag">Section 02 · Quantitative</div>
                     <h3>Market Segmentation Deep-Dive</h3>
@@ -259,7 +251,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 03 -->
                 <div id="sec-3" class="report-section">
                     <div class="section-tag">Section 03 · Mixed Matrix</div>
                     <h3>Competitive Landscape Matrix</h3>
@@ -267,7 +258,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 04 -->
                 <div id="sec-4" class="report-section">
                     <div class="section-tag">Section 04 · Quantitative</div>
                     <h3>The Paradox / Benchmark Comparison</h3>
@@ -275,7 +265,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 05 -->
                 <div id="sec-5" class="report-section">
                     <div class="section-tag">Section 05 · Qualitative</div>
                     <h3>Structural & Behavioural Insights</h3>
@@ -283,7 +272,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 06 -->
                 <div id="sec-6" class="report-section">
                     <div class="section-tag">Section 06 · Structural Framework</div>
                     <h3>Porter's Five Forces</h3>
@@ -291,7 +279,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 07 -->
                 <div id="sec-7" class="report-section">
                     <div class="section-tag">Section 07 · Analytical Grid</div>
                     <h3>SWOT Analysis</h3>
@@ -299,7 +286,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 08 -->
                 <div id="sec-8" class="report-section">
                     <div class="section-tag">Section 08 · Synthesis Framework</div>
                     <h3>Decision Synthesis Matrix</h3>
@@ -307,7 +293,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 09 -->
                 <div id="sec-9" class="report-section">
                     <div class="section-tag">Section 09 · Value Chain</div>
                     <h3>Value Chain Architecture: Input to Consumer</h3>
@@ -315,7 +300,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Section 10 -->
                 <div id="sec-10" class="report-section">
                     <div class="section-tag">Section 10 · Asset Spotlight</div>
                     <h3>Corporate Subject Deep-Dive</h3>
@@ -323,7 +307,6 @@
                     <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
                 </div>
 
-                <!-- Closing Insight Summary Box -->
                 <div id="sec-closing" class="report-section" style="border-left: 6px solid var(--primary);">
                     <div class="section-tag">Macro Synthesis · Analytical Verdict</div>
                     <h3>Closing Core Thesis</h3>
@@ -335,8 +318,8 @@
     </div>
 
     <script>
-        // API Configuration Target - REPLACE WITH YOUR ACTUAL API KEY
-        const API_KEY = "AQ.Ab8RN6KR9AMYjmRqUs5OoYaj9ZQwmFzbQoZ_h2jiRbOP7OgIuw";
+        // REPLACE WITH A REAL API KEY FROM GOOGLE AI STUDIO (STARTS WITH 'AIza')
+        const API_KEY = "AQ.Ab8RN6JlkWML0ZaVrM5i5a2c2X_VA08pJO_7NTO7mSEmie6b0Q"; 
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
         // View Navigation Listeners
@@ -351,6 +334,11 @@
             
             if (!industry) {
                 alert("An active target industry parameter is required.");
+                return;
+            }
+
+            if (API_KEY === "YOUR_REAL_API_KEY_HERE") {
+                alert("Please add a real API key in the code before generating.");
                 return;
             }
 
@@ -378,15 +366,28 @@
                     })
                 });
                 const data = await response.json();
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
+
+                // Properly catch and display Google API errors
+                if (data.error) {
+                    console.error("API Error:", data.error.message);
+                    return `<span style='color:var(--risk-red); font-weight:bold;'>API Error: ${data.error.message}</span>`;
+                }
+
+                // Process successful responses and strip markdown
+                if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let rawText = data.candidates[0].content.parts[0].text;
-                    // Strip markdown fences
                     return rawText.replace(/```html/g, "").replace(/```json/g, "").replace(/```/g, "").trim();
                 }
+
+                // Catch API safety blocks
+                if (data.candidates && data.candidates[0].finishReason) {
+                    return `<span style='color:var(--risk-red);'>Blocked by API Safety Settings. Reason: ${data.candidates[0].finishReason}</span>`;
+                }
+
                 return "<span style='color:var(--risk-red);'>Malformed operational response returned from analytical engine node.</span>";
             } catch (e) {
                 console.error(e);
-                return "<span style='color:var(--risk-red);'>Execution processing fault. Verify local API connectivity.</span>";
+                return "<span style='color:var(--risk-red);'>Execution processing fault. Verify local network connectivity.</span>";
             }
         }
 
@@ -409,18 +410,18 @@
 
             const rawResponse = await makeApiCall(prompt);
             try {
-                // Strip markdown wrappers if returned
+                // Parse cleanly formatted JSON
                 const cleanJson = rawResponse.replace(/```json/g, "").replace(/```/g, "").trim();
                 const parsed = JSON.parse(cleanJson);
-                mTarget.innerHTML = parsed.masthead;
+                mTarget.innerHTML = parsed.masthead || `<span style='color:var(--risk-red);'>Error parsing Masthead structure.</span>`;
                 
                 const hookContainer = document.getElementById('hook-container');
-                if(hookContainer) {
+                if(hookContainer && parsed.hooks) {
                     hookContainer.classList.remove('hidden');
                     document.getElementById('hook-content').innerHTML = parsed.hooks;
                 }
             } catch(e) {
-                // Fallback rendering on JSON parse irregularities
+                // If the response failed or returned an API error string instead of JSON
                 mTarget.innerHTML = rawResponse.replace(/\n/g, "<br>");
             }
             mTarget.parentElement.classList.remove('status-generating');
