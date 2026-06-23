@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>research-desk</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #0f766e;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --risk-red: #ef4444;
+            --warn-yellow: #f59e0b;
+            --go-green: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 3px double var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+            font-size: 3rem;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.05em;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        h2, h3, h4 {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+            color: var(--primary);
+        }
+
+        .mono {
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.9; }
+        .btn:disabled { background-color: var(--text-muted); cursor: not-allowed; }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .hidden { display: none !important; }
+
+        /* Report Layout Components */
+        .section-tag {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .section-desc {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: -8px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .report-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: var(--bg);
+            border-top: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .metric-val {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .metric-lbl {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .hook-banner {
+            background: var(--primary);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .hook-banner h3 { color: white; margin-top: 0; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th { background-color: var(--bg); font-weight: 600; }
+
+        .placeholder-box {
+            background: #fafafa;
+            border: 2px dashed #cbd5e1;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            border-radius: 6px;
+        }
+
+        .status-generating { border: 2px solid var(--warn-yellow); background: #fffbeb; }
+        .status-completed { border: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>research-desk</h1>
+            <p class="subtitle">Created by DS and assisted by AI</p>
+        </header>
+
+        <!-- Archive / Entry Screen -->
+        <section id="archive-view">
+            <h2>Archived Reports</h2>
+            <div class="grid-cards">
+                <div class="metric-card" style="text-align: left;">
+                    <h3>Automotive Sector (March 2026)</h3>
+                    <p>Analysis of EV adoption rates, cost parity curves, and raw material supply constraints within India.</p>
+                </div>
+                <div class="metric-card" style="text-align: left;">
+                    <h3>FMCG Quick Commerce Analysis</h3>
+                    <p>Evaluation of channel shift dynamics, dark store unit economics, and regional margin trends.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button id="initiate-btn" class="btn">Initiate Report Generation</button>
+            </div>
+        </section>
+
+        <!-- Generation Configuration Input Form -->
+        <section id="config-view" class="hidden">
+            <div class="report-section">
+                <h2>Configure Report Parameters</h2>
+                <label for="industry-name"><strong>Target Industry Name:</strong></label>
+                <input type="text" id="industry-name" placeholder="e.g., Indian Premium Tea & Artisanal Infusions">
+
+                <label for="company-name"><strong>Spotlight Subject / Client Company Name (Optional - for Section 10):</strong></label>
+                <input type="text" id="company-name" placeholder="e.g., Tata Consumer Products Limited">
+
+                <button id="generate-btn" class="btn">Build Real-time Report Structure</button>
+            </div>
+        </section>
+
+        <!-- Active Live Workspace Output Architecture -->
+        <section id="workspace-view" class="hidden">
+            
+            <!-- Masthead Layout Wrapper -->
+            <div class="report-section" id="masthead-container">
+                <div class="section-tag">Corporate Masthead / Cover</div>
+                <h2 id="live-report-title" style="font-size: 2.5rem; margin-bottom: 5px;">---</h2>
+                <p class="subtitle" style="text-align: left;">Research Execution Node: Active</p>
+                <div id="masthead-content" class="placeholder-box">Awaiting metric processing initialization...</div>
+            </div>
+
+            <!-- Hook Banner Placeholder -->
+            <div class="hook-banner id="hook-container" class="hidden">
+                <h3>Critical Non-Obvious Disruption Vectors</h3>
+                <div id="hook-content">Awaiting execution...</div>
+            </div>
+
+            <!-- Report Body Skeletons (Sections 1-10) -->
+            <div id="report-output">
+                <!-- Section 01 -->
+                <div id="sec-1" class="report-section">
+                    <div class="section-tag">Section 01 · Quantitative</div>
+                    <h3>Market Size & Growth Trajectory</h3>
+                    <p class="section-desc">Cross-referenced macro volumes, variance mappings, and conservative modeling.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 02 -->
+                <div id="sec-2" class="report-section">
+                    <div class="section-tag">Section 02 · Quantitative</div>
+                    <h3>Market Segmentation Deep-Dive</h3>
+                    <p class="section-desc">Product, variant, regional mappings, and unorganized baseline metrics.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 03 -->
+                <div id="sec-3" class="report-section">
+                    <div class="section-tag">Section 03 · Mixed Matrix</div>
+                    <h3>Competitive Landscape Matrix</h3>
+                    <p class="section-desc">Granular mapping of tier positioning, strategic advantages, and strategic exposures.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 04 -->
+                <div id="sec-4" class="report-section">
+                    <div class="section-tag">Section 04 · Quantitative</div>
+                    <h3>The Paradox / Benchmark Comparison</h3>
+                    <p class="section-desc">Cross-border per-capita analysis tracking true addressable structural gaps.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 05 -->
+                <div id="sec-5" class="report-section">
+                    <div class="section-tag">Section 05 · Qualitative</div>
+                    <h3>Structural & Behavioural Insights</h3>
+                    <p class="section-desc">Behavioral infrastructure realities, distribution adjustments, and regulatory exposure vectors.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 06 -->
+                <div id="sec-6" class="report-section">
+                    <div class="section-tag">Section 06 · Structural Framework</div>
+                    <h3>Porter's Five Forces</h3>
+                    <p class="section-desc">Market economic power calculations mapped precisely to domestic frameworks.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 07 -->
+                <div id="sec-7" class="report-section">
+                    <div class="section-tag">Section 07 · Analytical Grid</div>
+                    <h3>SWOT Analysis</h3>
+                    <p class="section-desc">Quantified, contextualized strategic cross-references mapping explicitly to data findings.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 08 -->
+                <div id="sec-8" class="report-section">
+                    <div class="section-tag">Section 08 · Synthesis Framework</div>
+                    <h3>Decision Synthesis Matrix</h3>
+                    <p class="section-desc">Direct linkage of numeric operational facts to ground-level strategic execution rules.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 09 -->
+                <div id="sec-9" class="report-section">
+                    <div class="section-tag">Section 09 · Value Chain</div>
+                    <h3>Value Chain Architecture: Input to Consumer</h3>
+                    <p class="section-desc">Step-by-step systemic margin distribution and core corporate unit economics benchmarks.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Section 10 -->
+                <div id="sec-10" class="report-section">
+                    <div class="section-tag">Section 10 · Asset Spotlight</div>
+                    <h3>Corporate Subject Deep-Dive</h3>
+                    <p class="section-desc">Direct compliance link connecting macro thesis arrays with company-specific financial records.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+
+                <!-- Closing Insight Summary Box -->
+                <div id="sec-closing" class="report-section" style="border-left: 6px solid var(--primary);">
+                    <div class="section-tag">Macro Synthesis · Analytical Verdict</div>
+                    <h3>Closing Core Thesis</h3>
+                    <p class="section-desc">The standalone structural reality of the industry architecture.</p>
+                    <div class="content-body"><div class="placeholder-box">Pending engine initiation...</div></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // API Configuration Target
+        const API_KEY = "YOUR_GEMINI_API_KEY_HERE";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+        // View Navigation Listeners
+        document.getElementById('initiate-btn').addEventListener('click', () => {
+            document.getElementById('archive-view').classList.add('hidden');
+            document.getElementById('config-view').classList.remove('hidden');
+        });
+
+        document.getElementById('generate-btn').addEventListener('click', async () => {
+            const industry = document.getElementById('industry-name').value.trim();
+            const company = document.getElementById('company-name').value.trim() || "the primary leading competitor";
+            
+            if (!industry) {
+                alert("An active target industry parameter is required.");
+                return;
+            }
+
+            document.getElementById('config-view').classList.add('hidden');
+            document.getElementById('workspace-view').classList.remove('hidden');
+            document.getElementById('live-report-title').innerText = industry;
+
+            document.getElementById('generate-btn').disabled = true;
+
+            // Sequential Execution Thread
+            await generateMastheadAndHooks(industry, company);
+            for (let i = 1; i <= 10; i++) {
+                await generateSection(i, industry, company);
+            }
+            await generateClosingThesis(industry, company);
+        });
+
+        async function makeApiCall(prompt) {
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+                const data = await response.json();
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    return data.candidates[0].content.parts[0].text;
+                }
+                return "<span style='color:var(--risk-red);'>Malformed operational response returned from analytical engine node.</span>";
+            } catch (e) {
+                console.error(e);
+                return "<span style='color:var(--risk-red);'>Execution processing fault. Verify local API connectivity.</span>";
+            }
+        }
+
+        async function generateMastheadAndHooks(industry, company) {
+            const mTarget = document.querySelector("#masthead-content");
+            mTarget.parentElement.classList.add('status-generating');
+            mTarget.innerHTML = "Processing data infrastructure feeds...";
+
+            const prompt = `You are a strict financial equity research analyst executing a framework for the industry: "${industry}". 
+            Generate two clean HTML fragments wrapped inside a valid JSON object. Do not output markdown code blocks outside of the JSON. Return a clean JSON string with keys "masthead" and "hooks".
+            
+            "masthead" should contain:
+            1. An HTML grid layout (\`<div class="grid-cards">\`) displaying a Key Metrics Strip featuring 5-6 headline numbers (Current size, Growth rates, etc.) inside \`<div class="metric-card">\` blocks. Numbers must be formatted cleanly in fixed-width monospace via CSS.
+            2. An upfront explicit acknowledgement paragraph crediting primary legal/regulatory/industry data bodies (e.g., Ministry filings, tracking networks).
+            
+            "hooks" should contain:
+            An HTML list of exactly 4 critical, unexpected, counter-intuitive quantitative facts or operational paradoxes that instantly signal a disruption or inflection point in this domain.
+            
+            CRITICAL REQUIREMENT: If reliable hard data is completely unavailable for certain numbers, output the exact phrase "[No Reliable Public Data Available]" within that tag instead of estimating or hallucinating. Cite references for facts.`;
+
+            const rawResponse = await makeApiCall(prompt);
+            try {
+                // Strip markdown wrappers if returned
+                const cleanJson = rawResponse.replace(/```json/g, "").replace(/
+```/g, "").trim();
+                const parsed = JSON.parse(cleanJson);
+                mTarget.innerHTML = parsed.masthead;
+                
+                const hookContainer = document.getElementById('hook-container');
+                if(hookContainer) {
+                    hookContainer.classList.remove('hidden');
+                    document.getElementById('hook-content').innerHTML = parsed.hooks;
+                }
+            } catch(e) {
+                // Fallback rendering on JSON parse irregularities
+                mTarget.innerHTML = rawResponse.replace(/\n/g, "<br>");
+            }
+            mTarget.parentElement.classList.remove('status-generating');
+            mTarget.parentElement.classList.add('status-completed');
+        }
+
+        async function generateSection(sectionNum, industry, company) {
+            const container = document.getElementById(`sec-${sectionNum}`);
+            const target = container.querySelector(".content-body");
+            
+            container.classList.add('status-generating');
+            target.innerHTML = "Compiling structural datasets and applying validation layers...";
+
+            const sectionPrompts = {
+                1: `Output a structured HTML fragment for: Section 01 - Market Size & Growth Trajectory.
+                    Requirements:
+                    - Map cross-referenced estimates from at least two distinct research tracks.
+                    - Explicitly detail the precise 'Definitional Gap' causing variance between these datasets.
+                    - Provide a clean structured text table mapping Conservative, Base, and Bull forecast projections.
+                    - Construct metric cards (\`<div class="grid-cards">\`) showing Current Size, Projected Size, CAGR, and the Organised vs Unorganised volume split.
+                    - Explicitly label lack of reliable data where applicable. State specific sources used. Do not use generic placeholders.`,
+                
+                2: `Output a structured HTML fragment for: Section 02 - Market Segmentation Deep-Dive.
+                    Requirements:
+                    - Separate breakdown lists or tables by Product Variant/Format, Flavor/Type, and Geography at the explicit State/Region level (not just national).
+                    - Create a textual display schema showing Brand Market Share within the organized ecosystem.
+                    - Detail the scale of the unorganized segment and explain how its lack of transparency distorts known market calculations.
+                    - Detail any secondary industry-specific segmentations known. State sources.`,
+                
+                3: `Output a structured HTML fragment for: Section 03 - Competitive Landscape Matrix.
+                    Requirements:
+                    - Build a comprehensive clean HTML table (\`<table>\`).
+                    - Columns required: Brand Name + Tier Badge, Market Position/Geography Owned, Market Share (Organised % Base), Price Range Positioning, Strategic Operational Edge, and Structural Blind Spot/Exposure Core.
+                    - Populate specific rows targeting the following precise roles: Market Leader, Premium Player, Volume Player, Regional Specialist, Fast-Growing Challenger, and an emerging D2C Startup. State data sources explicitly.`,
+                
+                4: `Output a structured HTML fragment for: Section 04 - The Paradox / Benchmark Comparison.
+                    Requirements:
+                    - Define and benchmark India's operational penetration/per-capita metrics directly against relevant global peer nations.
+                    - Identify and display in large bold text the single non-obvious 'Paradox Number' that highlights structural divergence.
+                    - Conclude with a clear calculation defining the quantitative scale of the long-term addressable market opportunity created by this gap.`,
+                
+                5: `Output a structured HTML fragment for: Section 05 - Structural & Behavioural Insights.
+                    Requirements:
+                    - Construct an HTML grid layout containing distinct card components. Each card must feature a distinct label, a bold title, and 3-4 lines of sharp, definitive insight.
+                    - Address the following domains: Behavioral Shifts, Category Redefinition/Brand Architecture, Supply Chain Infrastructure Realities, Regulatory/Compliance Blind Spots (e.g., FSSAI, SEBI), and Export Vector Openings.`,
+                
+                6: `Output a structured HTML fragment for: Section 06 - Porter's Five Forces.
+                    Requirements:
+                    - Create a section grid mapping all 5 individual structural forces.
+                    - Every force must declare a bold Intensity Label (Very High / High / Medium / Low), an explicit numeric scorecard value out of 5, and 4-5 contextualized country-specific bullet paths.
+                    - Conclude with a solid text block mapping structural implications directly back to entry thresholds for new capital or active incumbents.`,
+                
+                7: `Output a structured HTML fragment for: Section 07 - SWOT Analysis.
+                    Requirements:
+                    - Build a balanced 2x2 HTML layout framework mapping Strengths, Weaknesses, Opportunities, and Threats.
+                    - Ensure points are completely localized and quantified. Strengths/Opportunities must tightly reconcile with metrics given in prior data segments. Weaknesses/Threats must trace to operational issues discovered in structural sections.`,
+                
+                8: `Output a structured HTML fragment for: Section 08 - Synthesis Table.
+                    Requirements:
+                    - Generate an operational decision matrix table (\`<table>\`).
+                    - Mandatory Columns: Dimension Theme, Quantitative Hard Fact, Qualitative Ground Signal, Signal Strength Indicator Token (e.g., 🟢 Very High / 🟡 High / 🔴 Risk), and Strategic Action Implication for deploying capital.`,
+                
+                9: `Output a structured HTML fragment for: Section 09 - Value Chain Breakdown.
+                    Requirements:
+                    - Detail a minimum of 6 progressive phases from raw input sourcing to end delivery. List key actors, process dynamics, temperature/quality constraints, and strict % margin capture shares at each step.
+                    - Provide a 'Brand Earnings Benchmarks' data table outlining structural P&L metrics across tiers (Mass, Mid-Premium, Premium, D2C Startup) detailing Gross Margins, EBITDA performance levels, and actual cash retention metrics per ₹100 MRP sold.`,
+                
+                10: `Output a structured HTML fragment for: Section 10 - Brand / Company Spotlight. Target Entity: "${company}".
+                    Requirements:
+                    - Surface revenue trajectory, operational footprint metrics, and infrastructure assets using official statutory registry or stock exchange disclosures.
+                    - Construct a 'Research Linkage Matrix Table' directly evaluating how the target company's current position maps to broader macro trends. Column fields: Macro Industrial Finding, Company Reality Mapping, Structural Verdict Badge (✅ aligned / ⚠️ gap / 🔴 risk).`
+            };
+
+            const systemContextPrompt = `Execute inside an expert-level equity environment. Do not output commentary or explanations outside the requested HTML layout code block. Use CSS inline classes or structural classes mapped to the document header stylesheet (\`metric-card\`, \`grid-cards\`, \`mono\`, etc.). 
+            INVARIANT: If any data element is missing, unverified, or unavailable via structural channels, replace the value with "[Data Unavailable - No Verifiable Source Tracks]" rather than applying estimates.
+            Prompt: ${sectionPrompts[sectionNum]}`;
+
+            const resultHtml = await makeApiCall(systemContextPrompt);
+            target.innerHTML = resultHtml;
+            
+            container.classList.remove('status-generating');
+            container.classList.add('status-completed');
+        }
+
+        async function generateClosingThesis(industry, company) {
+            const container = document.getElementById("sec-closing");
+            const target = container.querySelector(".content-body");
+            
+            container.classList.add('status-generating');
+            
+            const prompt = `Write a comprehensive, forward-looking macro economic thesis paragraph summarizing the industry outlook for "${industry}". 
+            Constraints:
+            - Exactly one unified block paragraph.
+            - Absolutely zero lists, line breaks, or bullet paths.
+            - Do not summarize earlier sections textually.
+            - Deliver exactly 5 definitive, high-density sentences stating the ultimate core reality governing the survival, trajectory, and capital efficiency of this space over a 10-year investment horizon.`;
+
+            const resultText = await makeApiCall(prompt);
+            target.innerHTML = `<p style="font-family: Georgia, serif; font-size: 1.15rem; line-height: 1.8;">${resultText}</p>`;
+            
+            container.classList.remove('status-generating');
+            container.classList.add('status-completed');
+        }
+    </script>
+</body>
+</html>
