@@ -379,7 +379,9 @@
                 });
                 const data = await response.json();
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    return data.candidates[0].content.parts[0].text;
+                    let rawText = data.candidates[0].content.parts[0].text;
+                    // Strip markdown fences
+                    return rawText.replace(/```html/g, "").replace(/```json/g, "").replace(/```/g, "").trim();
                 }
                 return "<span style='color:var(--risk-red);'>Malformed operational response returned from analytical engine node.</span>";
             } catch (e) {
