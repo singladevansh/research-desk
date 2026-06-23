@@ -236,7 +236,7 @@
             </div>
 
             <!-- Hook Banner Placeholder -->
-            <div class="hook-banner id="hook-container" class="hidden">
+            <div id="hook-container" class="hook-banner hidden">
                 <h3>Critical Non-Obvious Disruption Vectors</h3>
                 <div id="hook-content">Awaiting execution...</div>
             </div>
@@ -335,7 +335,7 @@
     </div>
 
     <script>
-        // API Configuration Target
+        // API Configuration Target - REPLACE WITH YOUR ACTUAL API KEY
         const API_KEY = "YOUR_GEMINI_API_KEY_HERE";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
@@ -397,19 +397,18 @@
             Generate two clean HTML fragments wrapped inside a valid JSON object. Do not output markdown code blocks outside of the JSON. Return a clean JSON string with keys "masthead" and "hooks".
             
             "masthead" should contain:
-            1. An HTML grid layout (\`<div class="grid-cards">\`) displaying a Key Metrics Strip featuring 5-6 headline numbers (Current size, Growth rates, etc.) inside \`<div class="metric-card">\` blocks. Numbers must be formatted cleanly in fixed-width monospace via CSS.
+            1. An HTML grid layout (<div class="grid-cards">) displaying a Key Metrics Strip featuring 5-6 headline numbers (Current size, Growth rates, etc.) inside <div class="metric-card"> elements.
             2. An upfront explicit acknowledgement paragraph crediting primary legal/regulatory/industry data bodies (e.g., Ministry filings, tracking networks).
             
             "hooks" should contain:
             An HTML list of exactly 4 critical, unexpected, counter-intuitive quantitative facts or operational paradoxes that instantly signal a disruption or inflection point in this domain.
             
-            CRITICAL REQUIREMENT: If reliable hard data is completely unavailable for certain numbers, output the exact phrase "[No Reliable Public Data Available]" within that tag instead of estimating or hallucinating. Cite references for facts.`;
+            CRITICAL REQUIREMENT: If reliable hard data is completely unavailable for certain numbers, output the exact phrase "[No Reliable Public Data Available]" within that tag instead of estimating.`;
 
             const rawResponse = await makeApiCall(prompt);
             try {
                 // Strip markdown wrappers if returned
-                const cleanJson = rawResponse.replace(/```json/g, "").replace(/
-```/g, "").trim();
+                const cleanJson = rawResponse.replace(/```json/g, "").replace(/```/g, "").trim();
                 const parsed = JSON.parse(cleanJson);
                 mTarget.innerHTML = parsed.masthead;
                 
@@ -439,21 +438,21 @@
                     - Map cross-referenced estimates from at least two distinct research tracks.
                     - Explicitly detail the precise 'Definitional Gap' causing variance between these datasets.
                     - Provide a clean structured text table mapping Conservative, Base, and Bull forecast projections.
-                    - Construct metric cards (\`<div class="grid-cards">\`) showing Current Size, Projected Size, CAGR, and the Organised vs Unorganised volume split.
+                    - Construct metric cards showing Current Size, Projected Size, CAGR, and the Organised vs Unorganised volume split.
                     - Explicitly label lack of reliable data where applicable. State specific sources used. Do not use generic placeholders.`,
                 
                 2: `Output a structured HTML fragment for: Section 02 - Market Segmentation Deep-Dive.
                     Requirements:
-                    - Separate breakdown lists or tables by Product Variant/Format, Flavor/Type, and Geography at the explicit State/Region level (not just national).
+                    - Separate breakdown lists or tables by Product Variant/Format, Flavor/Type, and Geography at the explicit State/Region level.
                     - Create a textual display schema showing Brand Market Share within the organized ecosystem.
                     - Detail the scale of the unorganized segment and explain how its lack of transparency distorts known market calculations.
                     - Detail any secondary industry-specific segmentations known. State sources.`,
                 
                 3: `Output a structured HTML fragment for: Section 03 - Competitive Landscape Matrix.
                     Requirements:
-                    - Build a comprehensive clean HTML table (\`<table>\`).
-                    - Columns required: Brand Name + Tier Badge, Market Position/Geography Owned, Market Share (Organised % Base), Price Range Positioning, Strategic Operational Edge, and Structural Blind Spot/Exposure Core.
-                    - Populate specific rows targeting the following precise roles: Market Leader, Premium Player, Volume Player, Regional Specialist, Fast-Growing Challenger, and an emerging D2C Startup. State data sources explicitly.`,
+                    - Build a comprehensive clean HTML table.
+                    - Columns required: Brand Name + Tier Badge, Market Position/Geography Owned, Market Share (Organised %), Price Range Positioning, Strategic Operational Edge, and Structural Vulnerabilities.
+                    - Populate specific rows targeting: Market Leader, Premium Player, Volume Player, Regional Specialist, Fast-Growing Challenger, and emerging D2C Star if applicable.`,
                 
                 4: `Output a structured HTML fragment for: Section 04 - The Paradox / Benchmark Comparison.
                     Requirements:
@@ -464,36 +463,36 @@
                 5: `Output a structured HTML fragment for: Section 05 - Structural & Behavioural Insights.
                     Requirements:
                     - Construct an HTML grid layout containing distinct card components. Each card must feature a distinct label, a bold title, and 3-4 lines of sharp, definitive insight.
-                    - Address the following domains: Behavioral Shifts, Category Redefinition/Brand Architecture, Supply Chain Infrastructure Realities, Regulatory/Compliance Blind Spots (e.g., FSSAI, SEBI), and Export Vector Openings.`,
+                    - Address the following domains: Behavioral Shifts, Category Redefinition/Brand Architecture, Supply Chain Infrastructure Realities, Regulatory/Compliance Blind Spots (e.g., FSSAI, local licensing).`,
                 
                 6: `Output a structured HTML fragment for: Section 06 - Porter's Five Forces.
                     Requirements:
                     - Create a section grid mapping all 5 individual structural forces.
-                    - Every force must declare a bold Intensity Label (Very High / High / Medium / Low), an explicit numeric scorecard value out of 5, and 4-5 contextualized country-specific bullet paths.
+                    - Every force must declare a bold Intensity Label (Very High / High / Medium / Low), an explicit numeric scorecard value out of 5, and 4-5 contextualized country-specific bullet points.
                     - Conclude with a solid text block mapping structural implications directly back to entry thresholds for new capital or active incumbents.`,
                 
                 7: `Output a structured HTML fragment for: Section 07 - SWOT Analysis.
                     Requirements:
                     - Build a balanced 2x2 HTML layout framework mapping Strengths, Weaknesses, Opportunities, and Threats.
-                    - Ensure points are completely localized and quantified. Strengths/Opportunities must tightly reconcile with metrics given in prior data segments. Weaknesses/Threats must trace to operational issues discovered in structural sections.`,
+                    - Ensure points are completely localized and quantified. Strengths/Opportunities must tightly reconcile with metrics given in prior data segments. Weaknesses/Threats must trace to specific structural challenges.`,
                 
                 8: `Output a structured HTML fragment for: Section 08 - Synthesis Table.
                     Requirements:
-                    - Generate an operational decision matrix table (\`<table>\`).
-                    - Mandatory Columns: Dimension Theme, Quantitative Hard Fact, Qualitative Ground Signal, Signal Strength Indicator Token (e.g., 🟢 Very High / 🟡 High / 🔴 Risk), and Strategic Action Implication for deploying capital.`,
+                    - Generate an operational decision matrix table.
+                    - Mandatory Columns: Dimension Theme, Quantitative Hard Fact, Qualitative Ground Signal, Signal Strength Indicator (e.g., 🟢 Very High / 🟡 High / 🔴 Risk), and Strategic Implication for Investors.`,
                 
                 9: `Output a structured HTML fragment for: Section 09 - Value Chain Breakdown.
                     Requirements:
-                    - Detail a minimum of 6 progressive phases from raw input sourcing to end delivery. List key actors, process dynamics, temperature/quality constraints, and strict % margin capture shares at each step.
-                    - Provide a 'Brand Earnings Benchmarks' data table outlining structural P&L metrics across tiers (Mass, Mid-Premium, Premium, D2C Startup) detailing Gross Margins, EBITDA performance levels, and actual cash retention metrics per ₹100 MRP sold.`,
+                    - Detail a minimum of 6 progressive phases from raw input sourcing to end delivery. List key actors, process dynamics, temperature/quality constraints, and strict % margin capture.
+                    - Provide a 'Brand Earnings Benchmarks' data table outlining structural P&L metrics across tiers (Mass, Mid-Premium, Premium, D2C Startup) detailing Gross Margins, EBITDA performance.`,
                 
                 10: `Output a structured HTML fragment for: Section 10 - Brand / Company Spotlight. Target Entity: "${company}".
                     Requirements:
                     - Surface revenue trajectory, operational footprint metrics, and infrastructure assets using official statutory registry or stock exchange disclosures.
-                    - Construct a 'Research Linkage Matrix Table' directly evaluating how the target company's current position maps to broader macro trends. Column fields: Macro Industrial Finding, Company Reality Mapping, Structural Verdict Badge (✅ aligned / ⚠️ gap / 🔴 risk).`
+                    - Construct a 'Research Linkage Matrix Table' directly evaluating how the target company's current position maps to broader macro trends. Column fields: Macro Industrial Finding, Company-Specific Manifestation, Impact on Valuation.`
             };
 
-            const systemContextPrompt = `Execute inside an expert-level equity environment. Do not output commentary or explanations outside the requested HTML layout code block. Use CSS inline classes or structural classes mapped to the document header stylesheet (\`metric-card\`, \`grid-cards\`, \`mono\`, etc.). 
+            const systemContextPrompt = `Execute inside an expert-level equity environment. Do not output commentary or explanations outside the requested HTML layout code block. Use CSS inline classes and HTML5 semantic structure. Return pure HTML/CSS only.
             INVARIANT: If any data element is missing, unverified, or unavailable via structural channels, replace the value with "[Data Unavailable - No Verifiable Source Tracks]" rather than applying estimates.
             Prompt: ${sectionPrompts[sectionNum]}`;
 
